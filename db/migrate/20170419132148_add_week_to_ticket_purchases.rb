@@ -8,7 +8,11 @@ class AddWeekToTicketPurchases < ActiveRecord::Migration
 
     TmpTicketPurchase.reset_column_information
     TmpTicketPurchase.find_each do |purchase|
-      purchase.week = purchase.created_at.strftime('%W')
+      if purchase.created_at
+        purchase.week = purchase.created_at.strftime('%W')
+      else
+        purchase.week = 0
+      end
       purchase.save!
     end
   end
