@@ -66,7 +66,5 @@ private
 
 def set_week
   self.week = created_at.strftime('%W')
-  without_versioning do
-    save!
-  end
+  save!
 end
